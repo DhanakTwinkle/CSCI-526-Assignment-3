@@ -35,6 +35,7 @@ public class Connector : MonoBehaviour
             colliders = new List<BoxCollider2D>();
             BoxCollider2D newcollider = gameObject.AddComponent<BoxCollider2D>();
             newcollider.offset = new Vector2(0.0f, 0.0f);
+            newcollider.size = new Vector2(0.95f, 0.95f);
             colliders.Add(newcollider);
 
             playerCells = new List<GameObject>();
@@ -79,6 +80,7 @@ public class Connector : MonoBehaviour
         foreach(GameObject dc in deadCells)
         {
             dc.GetComponent<Rigidbody2D>().isKinematic = true;
+            dc.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             dc.transform.position = new Vector3(Mathf.RoundToInt(dc.transform.position.x), Mathf.RoundToInt(dc.transform.position.y), 0.0f);
         }
 
@@ -156,6 +158,7 @@ public class Connector : MonoBehaviour
                         Grid.instance.add(gridPos);
                         BoxCollider2D newcollider = gameObject.AddComponent<BoxCollider2D>();
                         newcollider.offset = gridPos;
+                        newcollider.size = new Vector2(0.95f, 0.95f);
                         colliders.Add(newcollider);
 
                         GameObject newSprite = new GameObject();

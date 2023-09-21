@@ -135,11 +135,16 @@ public class Grid : MonoBehaviour
                 deletable = true;
                 return true;
             }
-
             Vector2 start = gridEntry[0].location == lookup[v].location? gridEntry[1].location: gridEntry[0].location;
             List<Vector2> visited = new List<Vector2>();
             
             node delete = lookup[v];
+            if(delete.children.Count == 4)
+            {
+                deletable = false;
+                return true;
+            }
+
             dfs((int)start.x, (int)start.y, ref delete, ref visited);
             
             if (visited.Count > 1 && visited.Count + 1 == gridEntry.Count)
