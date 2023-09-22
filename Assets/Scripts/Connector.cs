@@ -69,6 +69,7 @@ public class Connector : MonoBehaviour
     [Header("Player")]
     public Transform spriteTransform;
     public Sprite playerSprite;
+    public Sprite deadPlayerSprite;
     public UnityEditor.Animations.AnimatorController playerAnimator;
     public Transform deadCellContainer;
     public GameObject deadCellPrefab;
@@ -117,6 +118,15 @@ public class Connector : MonoBehaviour
         }
 
         switchedNow = true;
+    }
+
+    public void showKilledPlayers()
+    {
+        foreach(GameObject cell in playerCells)
+        {
+            cell.GetComponent<Animator>().enabled = false;
+            cell.GetComponent<SpriteRenderer>().sprite = deadPlayerSprite;
+        }
     }
 
     void Update()
