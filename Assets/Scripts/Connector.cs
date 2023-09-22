@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -70,7 +69,7 @@ public class Connector : MonoBehaviour
     public Transform spriteTransform;
     public Sprite playerSprite;
     public Sprite deadPlayerSprite;
-    public UnityEditor.Animations.AnimatorController playerAnimator;
+    public RuntimeAnimatorController playerAnimator;
     public Transform deadCellContainer;
     public GameObject deadCellPrefab;
 
