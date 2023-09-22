@@ -121,6 +121,22 @@ public class Grid : MonoBehaviour
             return false;
     }
 
+    public Vector2 mean()
+    {
+        Vector2 min = Vector2.positiveInfinity;
+        Vector2 max = Vector2.negativeInfinity;
+        foreach (var entry in lookup)
+        {
+            min.x = Mathf.Min(entry.Key.x, min.x);
+            min.y = Mathf.Min(entry.Key.y, min.y);
+
+            max.x = Mathf.Max(entry.Key.x, max.x);
+            max.y = Mathf.Max(entry.Key.y, max.y);
+        }
+
+        return new Vector2(min.x + (max.x - min.x) / 2, min.y + (max.y - min.y) / 2);
+    }
+
     public bool check(Vector2 v, out bool deletable)
     {
         if(lookup.ContainsKey(v))
@@ -159,7 +175,6 @@ public class Grid : MonoBehaviour
             return false;
         }
     }
-
     void dfs(int x, int y, ref node deletable, ref List<Vector2> visited)
     {
         Vector2 loc = new Vector2((int)x, (int)y);
