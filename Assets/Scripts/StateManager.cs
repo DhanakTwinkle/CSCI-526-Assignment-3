@@ -19,6 +19,20 @@ public class StateManager : MonoBehaviour
     public GameObject connectingPost;
     public float transitionSpeed = 50.0f;
 
+    [Header("UI")]
+    public GameObject Instructions;
+    public GameObject WellDone;
+
+    public void showInstructions(bool state)
+    {
+        Instructions.gameObject.SetActive(state);
+    }
+
+    public void showEnd(bool state)
+    {
+        WellDone.gameObject.SetActive(state);
+    }
+
     public void switchEffect(bool state)
     {
         StopAllCoroutines();

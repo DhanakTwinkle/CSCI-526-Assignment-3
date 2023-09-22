@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
             Movement.instance.enabled = false;
             Connector.instance.enabled = false;
+            StateManager.instance.showInstructions(false);
             Connector.instance.showKilledPlayers();
 
             StopAllCoroutines();
