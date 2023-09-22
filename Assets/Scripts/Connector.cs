@@ -44,6 +44,7 @@ public class Connector : MonoBehaviour
             newSprite.transform.parent = spriteTransform;
             newSprite.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             newSprite.AddComponent<SpriteRenderer>().sprite = playerSprite;
+            newSprite.AddComponent<Animator>().runtimeAnimatorController = playerAnimator;
             playerCells.Add(newSprite);
         }
         else
@@ -68,8 +69,12 @@ public class Connector : MonoBehaviour
     [Header("Player")]
     public Transform spriteTransform;
     public Sprite playerSprite;
+    public UnityEditor.Animations.AnimatorController playerAnimator;
     public Transform deadCellContainer;
     public GameObject deadCellPrefab;
+
+    [Header("Effects")]
+    public Animator smoke;
 
     public void setConnections()
     {
@@ -165,7 +170,12 @@ public class Connector : MonoBehaviour
                         newSprite.transform.parent = spriteTransform;
                         newSprite.transform.localPosition = new Vector3(gridPos.x, gridPos.y, 0.0f);
                         newSprite.AddComponent<SpriteRenderer>().sprite = playerSprite;
+                        newSprite.AddComponent<Animator>().runtimeAnimatorController = playerAnimator;
+                        newSprite.GetComponent<Animator>().Play(0, -1, playerCells[0].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
                         playerCells.Add(newSprite);
+
+                        smoke.gameObject.transform.position = new Vector3(position.x, position.y, 0.0f) + new Vector3(0.0f, -0.5f, 0.0f);
+                        smoke.SetTrigger("Play");
                     }
                     else if(cellType == type.player_cell)
                     {

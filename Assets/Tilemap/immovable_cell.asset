@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Env_Chainable
+  m_Name: immovable_cell
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -5287455479374835241, guid: 20b531dde43256749b7acf62e7beb443, type: 3}
+  m_Sprite: {fileID: 6242407505369867133, guid: c6f135e964938104bb8c7a579f7077df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -33,4 +33,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 1
+  m_ColliderType: 2
