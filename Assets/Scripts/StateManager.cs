@@ -16,14 +16,6 @@ public class StateManager : MonoBehaviour
 
     public bool IsConnecting = false;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            switchConnectionState();
-        }
-    }
-
     public void switchConnectionState()
     {
         IsConnecting = !IsConnecting;

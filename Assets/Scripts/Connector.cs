@@ -54,9 +54,9 @@ public class Connector : MonoBehaviour
 
     [Header("Indicator")]
     public GameObject indicator;
-    public Color immovableColor;
-    public Color movableColor;
-    public Color deletableColor;
+    public Sprite immovableColor;
+    public Sprite movableColor;
+    public Sprite deletableColor;
 
     [Header("Tilemaps")]
     public Tilemap environment;
@@ -93,13 +93,13 @@ public class Connector : MonoBehaviour
         bool deletable;
         Grid.instance.check(Grid.instance.gridEntry[0].location, out deletable);
         
-        Color cellColor;
+        Sprite cellColor;
         if (deletable)
             cellColor = deletableColor;
         else
             cellColor = immovableColor;
 
-        indicator.GetComponent<SpriteRenderer>().color = cellColor;
+        indicator.GetComponent<SpriteRenderer>().sprite = cellColor;
         indicator.SetActive(true);
     }
 
@@ -141,7 +141,7 @@ public class Connector : MonoBehaviour
             {
                 if (position - new Vector2(indicator.transform.position.x, indicator.transform.position.y) != Vector2.zero)
                 {
-                    Color cellColor = Color.black;
+                    Sprite cellColor = immovableColor;
                     if (cellType == type.immovable_cell)
                         cellColor = immovableColor;
                     else if (cellType == type.movable_cell)
@@ -149,7 +149,7 @@ public class Connector : MonoBehaviour
                     else if (cellType == type.player_cell)
                         cellColor = deletableColor;
 
-                    indicator.GetComponent<SpriteRenderer>().color = cellColor;
+                    indicator.GetComponent<SpriteRenderer>().sprite = cellColor;
                     indicator.transform.position = new Vector3(position.x, position.y, 0.0f);
                 }
 
@@ -170,6 +170,7 @@ public class Connector : MonoBehaviour
                         newSprite.transform.parent = spriteTransform;
                         newSprite.transform.localPosition = new Vector3(gridPos.x, gridPos.y, 0.0f);
                         newSprite.AddComponent<SpriteRenderer>().sprite = playerSprite;
+                        newSprite.GetComponent<SpriteRenderer>().flipX = playerCells[0].GetComponent<SpriteRenderer>().flipX;
                         newSprite.AddComponent<Animator>().runtimeAnimatorController = playerAnimator;
                         newSprite.GetComponent<Animator>().Play(0, -1, playerCells[0].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
                         playerCells.Add(newSprite);

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     public static Movement instance = null;
 
+    public bool left = false;
     private void Awake()
     {
         if (instance == null)
@@ -37,12 +39,26 @@ public class Movement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
                 jump();
+
+            if (Input.GetKeyDown(KeyCode.Q) && checkGrounded())
+                StateManager.instance.switchConnectionState();
         }
     }
 
     void walk(Vector2 dir)
     {
         rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
+        if (dir.x < 0 && !left)
+            flip();
+        else if (dir.x > 0 && left)
+            flip();
+    }
+
+    void flip()
+    {
+        left = !left;
+        foreach (GameObject cell in Connector.instance.playerCells)
+            cell.GetComponent<SpriteRenderer>().flipX = left;
     }
 
     void jump()
