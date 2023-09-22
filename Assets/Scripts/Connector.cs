@@ -76,6 +76,8 @@ public class Connector : MonoBehaviour
     [Header("Effects")]
     public Animator smoke;
 
+    bool switchedNow = true;
+
     public void setConnections()
     {
         GetComponent<Rigidbody2D>().isKinematic = true;
@@ -101,6 +103,8 @@ public class Connector : MonoBehaviour
 
         indicator.GetComponent<SpriteRenderer>().sprite = cellColor;
         indicator.SetActive(true);
+
+        switchedNow = true;
     }
 
     public void resetConnections()
@@ -111,12 +115,20 @@ public class Connector : MonoBehaviour
         {
             dc.GetComponent<Rigidbody2D>().isKinematic = false;
         }
+
+        switchedNow = true;
     }
 
     void Update()
     {
         if (StateManager.instance.IsConnecting)
         {
+            if(Input.GetKeyDown(KeyCode.Q) && !switchedNow)
+            {
+                StateManager.instance.switchConnectionState();
+                return;
+            }
+
             Vector2 position = new Vector2(indicator.transform.position.x, indicator.transform.position.y);
 
             if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -210,6 +222,8 @@ public class Connector : MonoBehaviour
                     StateManager.instance.switchConnectionState();
                 }
             }
+
+            switchedNow = false;
         }
     }
 
