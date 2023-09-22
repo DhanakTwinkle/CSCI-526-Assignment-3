@@ -6196,6 +6196,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2987767753203001372, guid: 8f4a4727d6bceb0499c671e7237ccc4d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987767753203001372, guid: 8f4a4727d6bceb0499c671e7237ccc4d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.19215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987767753203001372, guid: 8f4a4727d6bceb0499c671e7237ccc4d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.20392157
+      objectReference: {fileID: 0}
     - target: {fileID: 2987767753203001374, guid: 8f4a4727d6bceb0499c671e7237ccc4d, type: 3}
       propertyPath: m_Name
       value: Smoke
