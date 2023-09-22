@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         {
             if (!StateManager.instance.IsConnecting)
             {
-                StateManager.instance.switchConnectionState();
+                StateManager.instance.switchEffect(true);
                 Movement.instance.resetMovement();
             }
 

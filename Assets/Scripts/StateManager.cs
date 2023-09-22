@@ -19,6 +19,12 @@ public class StateManager : MonoBehaviour
     public GameObject connectingPost;
     public float transitionSpeed = 50.0f;
 
+    public void switchEffect(bool state)
+    {
+        StopAllCoroutines();
+        StartCoroutine(SwitchPostProcess(true));
+    }
+
     public void switchConnectionState()
     {
         IsConnecting = !IsConnecting;
